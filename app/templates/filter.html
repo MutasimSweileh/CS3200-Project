@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Filtered Results{% endblock %}
+{% block body %}
+
+<div class="container">
+  <h1>Lonely Planet's Top 500 Ultimate Travel Destinations</h1>
+  <p class="lead">Welcome to our project homepage! You can use this web app to look up information about the 500 destinations curated by Lonely Planet.</p>
+  <br>
+
+  <div class="results">
+    <h3>Filter Attractions By: &nbsp;&nbsp;&nbsp;
+      {% for item in filterItems %}
+      <span class="badge badge-primary">{{ item }}</span>
+      {% endfor %}
+    </h3>
+    <br>
+
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Origin</th>
+          <th>Description</th>
+          <th>Attraction ID</th>
+          <th>Country</th>
+          <th>Name</th>
+          <th>Info</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in results %}
+        <tr>
+          {% for data in row %}
+          <td>{{ data }}</td>
+          {% endfor %}
+          <td>
+            <a href="/attraction/{{ row[3] }}">
+              <i class="fa fa-info-circle"></i>
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+{% endblock %}
